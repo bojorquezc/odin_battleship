@@ -1,4 +1,8 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable max-classes-per-file */
 /* eslint-disable import/prefer-default-export */
+
 class Ship {
   constructor(type) {
     this.type = type;
@@ -27,6 +31,24 @@ class Ship {
   }
 }
 
+class Gameboard {
+  constructor() {
+    this.board = this.createBoard();
+  }
+
+  createBoard() {
+    const gameBoard = [];
+    const rows = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+    for (const row of rows) {
+      for (let index = 0; index < 10; index += 1) {
+        gameBoard.push(row + index);
+      }
+    }
+    return gameBoard;
+  }
+}
+
 export {
   Ship,
+  Gameboard,
 };
