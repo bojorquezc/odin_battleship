@@ -46,6 +46,16 @@ class Gameboard {
     }
     return gameBoard;
   }
+
+  placeShip(ship, startingCoordinate, direction) {
+    const boardIndex = this.board.indexOf(startingCoordinate);
+
+    if (direction === 'horizontal') {
+      for (let index = 0; index < ship.length; index += 1) {
+        this.board[boardIndex + index] = ship.type;
+      }
+    }
+  }
 }
 
 export {
