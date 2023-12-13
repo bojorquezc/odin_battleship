@@ -40,7 +40,7 @@ class Gameboard {
     const gameBoard = [];
     const rows = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
     for (const row of rows) {
-      for (let index = 0; index < 10; index += 1) {
+      for (let index = 1; index <= 10; index += 1) {
         gameBoard.push(row + index);
       }
     }
