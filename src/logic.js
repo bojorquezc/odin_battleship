@@ -48,11 +48,19 @@ class Gameboard {
   }
 
   placeShip(ship, startingCoordinate, direction) {
-    const boardIndex = this.board.indexOf(startingCoordinate);
+    let boardIndex = this.board.indexOf(startingCoordinate);
 
     if (direction === 'horizontal') {
       for (let index = 0; index < ship.length; index += 1) {
         this.board[boardIndex + index] = ship.type;
+      }
+    } else {
+      for (let index = 0; index < ship.length; index += 1) {
+        if (index === 0) {
+          this.board[boardIndex] = ship.type;
+        } else {
+          this.board[boardIndex += 10] = ship.type;
+        }
       }
     }
   }
