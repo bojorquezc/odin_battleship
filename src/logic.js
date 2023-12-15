@@ -38,29 +38,28 @@ class Gameboard {
 
   createBoard() {
     const gameBoard = [];
-    const rows = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
-    for (const row of rows) {
-      for (let index = 1; index <= 10; index += 1) {
-        gameBoard.push(row + index);
+    const rows = 10;
+    const columns = 10;
+    // Create a 2D gameBoard array
+    for (let i = 0; i < rows; i += 1) {
+      gameBoard[i] = [];
+      for (let j = 0; j < columns; j += 1) {
+        gameBoard[i][j] = j;
       }
     }
     return gameBoard;
   }
 
-  placeShip(ship, startingCoordinate, direction) {
-    let boardIndex = this.board.indexOf(startingCoordinate);
+  placeShip(ship, row, column, direction) {
+    // let boardIndex = this.board.indexOf(startingCoordinate);
 
     if (direction === 'horizontal') {
       for (let index = 0; index < ship.length; index += 1) {
-        this.board[boardIndex + index] = ship.type;
+        this.board[row][column + index] = ship.type;
       }
     } else {
       for (let index = 0; index < ship.length; index += 1) {
-        if (index === 0) {
-          this.board[boardIndex] = ship.type;
-        } else {
-          this.board[boardIndex += 10] = ship.type;
-        }
+        this.board[row + index][column] = ship.type;
       }
     }
   }
