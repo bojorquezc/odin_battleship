@@ -17,9 +17,11 @@ class Ship {
     } else if (type === 'cruiser' || type === 'submarine') {
       this.length = 3;
       this.hitPoints = 3;
-    } else {
+    } else if (type === 'destroyer') {
       this.length = 2;
       this.hitPoints = 2;
+    } else {
+      throw Error('Unknown type of ship');
     }
   }
 
@@ -50,14 +52,33 @@ class Gameboard {
     return gameBoard;
   }
 
-  placeShip(ship, row, column, direction) {
-    // let boardIndex = this.board.indexOf(startingCoordinate);
-
+  checkCoordinates(ship, row, column, direction) {
     if (direction === 'horizontal') {
+      for (let index = 0; index < ship.length; index += 1) {
+        // the ship does not fit the row
+        if (column + ship.length > 10) {
+          throw Error('Ship does not fit coordinates');
+          // the coordinate is taken by another ship
+        } else if (
+          this.board[row][column + index] === 'carrier'
+          || this.board[row][column + index] === 'battleship'
+          || this.board[row][column + index] === 'cruiser'
+          || this.board[row][column + index] === 'submarine'
+          || this.board[row][column + index] === 'destroyer'
+        ) {
+          throw Error('Ship already in place, choose different coordinates');
+        }
+      }
+    }
+    return true;
+  }
+
+  placeShip(ship, row, column, direction) {
+    if (direction === 'horizontal' && this.checkCoordinates(ship, row, column, direction) === true) {
       for (let index = 0; index < ship.length; index += 1) {
         this.board[row][column + index] = ship.type;
       }
-    } else {
+    } else if (direction === 'vertical') {
       for (let index = 0; index < ship.length; index += 1) {
         this.board[row + index][column] = ship.type;
       }
