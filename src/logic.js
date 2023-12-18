@@ -70,6 +70,23 @@ class Gameboard {
         }
       }
     }
+    if (direction === 'vertical') {
+      for (let index = 0; index < ship.length; index += 1) {
+        // the ship does not fit the row
+        if (row + ship.length > 10) {
+          throw Error('Ship does not fit coordinates');
+          // the coordinate is taken by another ship
+        } else if (
+          this.board[row + index][column] === 'carrier'
+          || this.board[row + index][column] === 'battleship'
+          || this.board[row + index][column] === 'cruiser'
+          || this.board[row + index][column] === 'submarine'
+          || this.board[row + index][column] === 'destroyer'
+        ) {
+          throw Error('Ship already in place, choose different coordinates');
+        }
+      }
+    }
     return true;
   }
 
@@ -78,7 +95,7 @@ class Gameboard {
       for (let index = 0; index < ship.length; index += 1) {
         this.board[row][column + index] = ship.type;
       }
-    } else if (direction === 'vertical') {
+    } else if (direction === 'vertical' && this.checkCoordinates(ship, row, column, direction) === true) {
       for (let index = 0; index < ship.length; index += 1) {
         this.board[row + index][column] = ship.type;
       }

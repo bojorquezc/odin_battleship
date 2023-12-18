@@ -7,6 +7,7 @@ test('gameboard is generated', () => {
     expect(gameBoardTest.board.length).toBe(10);
 });
 
+// HORIZONTAL PLACEMENT TESTS
 // placing a ship horizontally with space available
 test('place ship on gameboard horizontally', () => {
     const gameBoardTest = new Gameboard;
@@ -37,6 +38,7 @@ test('placing a ship horizontally with no space available', () => {
     expect(instantiateShip).toThrow('Ship already in place, choose different coordinates');
 });
 
+// VERTICAL PLACEMENT TESTS
 // placing a ship vertically with space available
 test('place ship on gameboard vertically', () => {
     const gameBoardTest = new Gameboard;
@@ -46,4 +48,23 @@ test('place ship on gameboard vertically', () => {
     expect(gameBoardTest.board[2][0]).toBe('carrier');
     expect(gameBoardTest.board[3][0]).toBe('carrier');
     expect(gameBoardTest.board[4][0]).toBe('carrier');
+});
+
+// placing a ship vertically with no space available
+test('place ship on gameboard vertically with no space avaiable', () => {
+    const gameBoardTest = new Gameboard;
+    function instantiateShip() {
+        gameBoardTest.placeShip(new Ship('carrier'), 6, 0, 'vertical');
+    }
+    expect(instantiateShip).toThrow('Ship does not fit coordinates');
+});
+
+// placing a ship vertically over a ship already in place
+test.only('placing a ship vertically with no space available', () => {
+    const gameBoardTest = new Gameboard;
+    function instantiateShip() {
+        gameBoardTest.placeShip(new Ship('carrier'), 0, 0, 'horizontal');
+        gameBoardTest.placeShip(new Ship('cruiser'), 0, 2, 'vertical');
+    }
+    expect(instantiateShip).toThrow('Ship already in place, choose different coordinates');
 });
