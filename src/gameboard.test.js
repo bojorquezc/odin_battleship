@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Ship, Gameboard } from "./src/logic";
+import { Ship, Gameboard } from "./logic";
 
 // gameBoard is a 2D array, its length should be 10
 test('gameboard is generated', () => {
@@ -60,11 +60,20 @@ test('place ship on gameboard vertically with no space avaiable', () => {
 });
 
 // placing a ship vertically over a ship already in place
-test.only('placing a ship vertically with no space available', () => {
+test('placing a ship vertically with no space available', () => {
     const gameBoardTest = new Gameboard;
     function instantiateShip() {
         gameBoardTest.placeShip(new Ship('carrier'), 0, 0, 'horizontal');
         gameBoardTest.placeShip(new Ship('cruiser'), 0, 2, 'vertical');
     }
     expect(instantiateShip).toThrow('Ship already in place, choose different coordinates');
+});
+
+// RECEIVE HIT
+test.only('the selected coordinates damage a ship if a ship is found', () => {
+    const gameBoardTest = new Gameboard;
+    gameBoardTest.placeShip(new Ship('carrier'), 0, 0, 'horizontal');
+    gameBoardTest.receiveAttack(0,0);
+    gameBoardTest.receiveAttack(0,1);
+    expect(gameBoardTest.playerShips[0].hitPoints).toEqual(3);
 });

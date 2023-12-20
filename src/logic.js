@@ -30,12 +30,14 @@ class Ship {
     if (this.hitPoints === 0) {
       this.sunk = true;
     }
+    return `${this.type} hit points: ${this.hitPoints}`;
   }
 }
 
 class Gameboard {
   constructor() {
     this.board = this.createBoard();
+    this.playerShips = [];
   }
 
   createBoard() {
@@ -92,13 +94,38 @@ class Gameboard {
 
   placeShip(ship, row, column, direction) {
     if (direction === 'horizontal' && this.checkCoordinates(ship, row, column, direction) === true) {
+      // Add ship object to the playerShips array
+      this.playerShips.push(ship);
       for (let index = 0; index < ship.length; index += 1) {
+        // Add the ship type to the selected coordinates
         this.board[row][column + index] = ship.type;
       }
     } else if (direction === 'vertical' && this.checkCoordinates(ship, row, column, direction) === true) {
+      // Add ship object to the playerShips array
+      this.playerShips.push(ship);
       for (let index = 0; index < ship.length; index += 1) {
+        // Add the ship type to the selected coordinates
         this.board[row + index][column] = ship.type;
       }
+    }
+  }
+
+  receiveAttack(row, column) {
+    if (
+      this.board[row][column] === 'carrier'
+      || this.board[row][column] === 'battleship'
+      || this.board[row][column] === 'cruiser'
+      || this.board[row][column] === 'submarine'
+      || this.board[row][column] === 'destroyer'
+    ) {
+      const damagedShip = this.board[row][column];
+      for (const ship of this.playerShips) {
+        if (ship.type === damagedShip) {
+          ship.hit();
+        }
+      }
+    } else {
+      this.board[row][column] = 'missed';
     }
   }
 }
