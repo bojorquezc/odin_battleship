@@ -70,10 +70,20 @@ test('placing a ship vertically with no space available', () => {
 });
 
 // RECEIVE HIT
-test.only('the selected coordinates damage a ship if a ship is found', () => {
+test('the selected coordinates damage a ship if a ship is found', () => {
     const gameBoardTest = new Gameboard;
     gameBoardTest.placeShip(new Ship('carrier'), 0, 0, 'horizontal');
     gameBoardTest.receiveAttack(0,0);
     gameBoardTest.receiveAttack(0,1);
     expect(gameBoardTest.playerShips[0].hitPoints).toEqual(3);
+});
+
+// MISSED SHOT
+test.only('the selected coordinates add a missed marker in case no ship is found', () => {
+    const gameBoardTest = new Gameboard;
+    gameBoardTest.placeShip(new Ship('carrier'), 0, 0, 'horizontal');
+    gameBoardTest.receiveAttack(0,4);
+    expect(gameBoardTest.board[0][4]).toEqual('carrier');
+    gameBoardTest.receiveAttack(0,5);
+    expect(gameBoardTest.board[0][5]).toEqual('missed');
 });
