@@ -79,11 +79,27 @@ test('the selected coordinates damage a ship if a ship is found', () => {
 });
 
 // MISSED SHOT
-test.only('the selected coordinates add a missed marker in case no ship is found', () => {
+test('the selected coordinates add a missed marker in case no ship is found', () => {
     const gameBoardTest = new Gameboard;
     gameBoardTest.placeShip(new Ship('carrier'), 0, 0, 'horizontal');
     gameBoardTest.receiveAttack(0,4);
     expect(gameBoardTest.board[0][4]).toEqual('carrier');
     gameBoardTest.receiveAttack(0,5);
     expect(gameBoardTest.board[0][5]).toEqual('missed');
+});
+
+// END GAME
+test('the game ends after all the ships are sunk', () => {
+    const gameBoardTest = new Gameboard;
+    gameBoardTest.placeShip(new Ship('carrier'), 0, 0, 'horizontal');
+    gameBoardTest.placeShip(new Ship('battleship'), 1, 0, 'horizontal');
+    gameBoardTest.placeShip(new Ship('cruiser'), 2, 0, 'horizontal');
+    gameBoardTest.placeShip(new Ship('submarine'), 3, 0, 'horizontal');
+    gameBoardTest.placeShip(new Ship('destroyer'), 4, 0, 'horizontal');
+    gameBoardTest.playerShips[0].sunk = true;
+    gameBoardTest.playerShips[1].sunk = true;
+    gameBoardTest.playerShips[2].sunk = true;
+    gameBoardTest.playerShips[3].sunk = true;
+    gameBoardTest.playerShips[4].sunk = true;
+    expect(gameBoardTest.endGame(gameBoardTest.playerShips)).toEqual(true);
 });

@@ -128,6 +128,15 @@ class Gameboard {
       this.board[row][column] = 'missed';
     }
   }
+
+  endGame(playerShipArray) {
+    for (const ship of playerShipArray) {
+      if (ship.sunk === false) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 export {
