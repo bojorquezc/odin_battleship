@@ -139,7 +139,50 @@ class Gameboard {
   }
 }
 
+class Player {
+  constructor(name) {
+    this.name = name;
+  }
+
+  sendAttack(playerGameboard, row, column) {
+    playerGameboard.receiveAttack(row, column);
+  }
+}
+
+class Computer {
+  constructor() {
+    this.name = 'computer';
+    this.playedMoves = this.createBoard();
+  }
+
+  createBoard() {
+    const gameBoard = [];
+    const rows = 10;
+    const columns = 10;
+    // Create a 2D gameBoard array
+    for (let i = 0; i < rows; i += 1) {
+      gameBoard[i] = [];
+      for (let j = 0; j < columns; j += 1) {
+        gameBoard[i][j] = j;
+      }
+    }
+    return gameBoard;
+  }
+
+  sendAttack(enemyGameboard) {
+    const row = Math.floor(Math.random() * 9);
+    const column = Math.floor(Math.random() * 9);
+    if (this.playedMoves[row][column] !== 'x') {
+      enemyGameboard.receiveAttack(row, column);
+      this.playedMoves[row][column] = 'x';
+      return this.playedMoves;
+    }
+  }
+}
+
 export {
   Ship,
   Gameboard,
+  Player,
+  Computer,
 };
