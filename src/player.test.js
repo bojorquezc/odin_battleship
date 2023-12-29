@@ -26,5 +26,16 @@ test.only('computer can attack randomly and enemy board receives attack', () => 
     const player2GameBoard = new Gameboard();
     player2GameBoard.placeShip(new Ship('carrier'), 1, 0, 'horizontal');
     // board received attack
-    expect(player2.sendAttack(player1GameBoard)).toEqual(true);
+    player2.sendAttack(player1GameBoard)
+    // check for random attack received
+    function checkAttack(gameBoard) {
+        for (const row of gameBoard) {
+            for (const column of row) {
+                if (column === 'missed' || column === 'x') {
+                    return true;
+                }
+            }
+        }
+    }
+    expect(checkAttack(player1GameBoard.board)).toEqual(true);
 });

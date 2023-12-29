@@ -175,7 +175,6 @@ class Computer {
     if (this.playedMoves[row][column] !== 'x') {
       enemyGameboard.receiveAttack(row, column);
       this.playedMoves[row][column] = 'x';
-      return this.playedMoves;
     }
   }
 }
