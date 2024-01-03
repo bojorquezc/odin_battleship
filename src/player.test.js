@@ -17,7 +17,7 @@ test('player can attack and enemy receives attack', () => {
 });
 
 // COMPUTER ATTACK
-test.only('computer can attack randomly and enemy board receives attack', () => {
+test('computer can attack randomly and enemy board receives attack', () => {
     // player and board setup with 1 ship each
     const player1 = new Player('john');
     const player2 = new Computer();
