@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Ship, Gameboard, Player, Computer } from "./logic";
+import { Ship, Gameboard, Player, Computer } from './logic';
 
 // PLAYER ATTACK
 test('player can attack and enemy receives attack', () => {

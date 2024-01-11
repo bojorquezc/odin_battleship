@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Ship } from "./logic";
+import { Ship } from './logic';
 
     // const carrier = new Ship('carrier');
     // const battleship = new Ship('battleship');

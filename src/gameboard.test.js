@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Ship, Gameboard } from "./logic";
+import { Ship, Gameboard } from './logic';
 
 // gameBoard is a 2D array, its length should be 10
 test('gameboard is generated', () => {
