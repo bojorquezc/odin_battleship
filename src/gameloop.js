@@ -27,10 +27,10 @@ function newTestGame() {
   player2GameBoard.placeShip(new Ship('submarine'), 7, 2, 'vertical');
   player2GameBoard.placeShip(new Ship('destroyer'), 9, 6, 'horizontal');
 
-  console.log(player1GameBoard.board[0]);
-  console.log(player2GameBoard.board[0]);
-  displayShips(player1GameBoard.board[0]);
-  displayShips(player2GameBoard.board[0]);
+  console.log(player1GameBoard.board);
+  console.log(player2GameBoard.board);
+  displayShips(player1GameBoard.board);
+  displayShips(player2GameBoard.board);
 }
 
 export {

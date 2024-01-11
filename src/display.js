@@ -13,20 +13,21 @@ import {
 function displayShips(gameBoard) {
   const coordinate = document.querySelectorAll('.board_square');
 
-  for (const ship of gameBoard) {
-    if (ship === 'carrier'
-      || ship === 'battleship'
-      || ship === 'cruiser'
-      || ship === 'submarine'
-      || ship === 'destroyer') {
-      console.log(`ship found ${gameBoard.indexOf(ship)}`);
-      for (const boardSquare of coordinate) {
-        if (boardSquare.dataset.dataPlayer === '1' && boardSquare.dataset.coordinate === `[0][${gameBoard.indexOf(ship)}]`) {
-          boardSquare.style.backgroundColor = 'red';
+  for (let i = 0; i < gameBoard.length; i += 1) {
+    for (let j = 0; j < gameBoard[i].length; j += 1) {
+      if (gameBoard[i][j] === 'carrier'
+        || gameBoard[i][j] === 'battleship'
+        || gameBoard[i][j] === 'cruiser'
+        || gameBoard[i][j] === 'submarine'
+        || gameBoard[i][j] === 'destroyer') {
+        console.log(gameBoard[i][j]);
+        for (const boardSquare of coordinate) {
+          if (boardSquare.dataset.player === '1'
+            && boardSquare.dataset.coordinate === `[${i}][${j}]`) {
+            boardSquare.style.backgroundColor = '#684aab';
+          }
         }
       }
-    } else {
-      console.log('ship not found');
     }
   }
 }
