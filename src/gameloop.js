@@ -10,7 +10,8 @@ import {
 } from './display';
 
 function newTestGame() {
-  displayBoard();
+  displayBoard('1');
+  displayBoard('2');
   // create player 1 and player 1 gameboard with ships
   const player1 = new Player('john');
   const player1GameBoard = new Gameboard();

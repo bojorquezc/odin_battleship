@@ -11,11 +11,11 @@ import {
 } from './gameloop';
 
 function displayBoard(player) {
-  const gameBoardContainer = document.querySelector('.gameboard_container_p1');
+  const gameBoardContainer = document.querySelector(`.gameboard_container_p${player}`);
 
   // Create title section of gameboard
   const gameBoardTitle = document.createElement('div');
-  gameBoardTitle.textContent = 'Player 1 Board';
+  gameBoardTitle.textContent = `Player ${player} Board`;
   gameBoardTitle.classList.add('gameboard_title');
   gameBoardContainer.appendChild(gameBoardTitle);
 
@@ -31,7 +31,7 @@ function displayBoard(player) {
     for (let j = 0; j < columns; j += 1) {
       const boardSquare = document.createElement('div');
       boardSquare.classList.add('board_square');
-      boardSquare.dataset.player = '1';
+      boardSquare.dataset.player = `${player}`;
       boardSquare.dataset.coordinate = `[${i}][${j}]`;
       gameBoard.appendChild(boardSquare);
     }
