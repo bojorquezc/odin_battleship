@@ -10,6 +10,34 @@ import {
   newTestGame,
 } from './gameloop';
 
+function displayBoard(player) {
+  const gameBoardContainer = document.querySelector('.gameboard_container_p1');
+
+  // Create title section of gameboard
+  const gameBoardTitle = document.createElement('div');
+  gameBoardTitle.textContent = 'Player 1 Board';
+  gameBoardTitle.classList.add('gameboard_title');
+  gameBoardContainer.appendChild(gameBoardTitle);
+
+  // Create main container for gameboard
+  const gameBoard = document.createElement('div');
+  gameBoard.classList.add('gameboard');
+  gameBoardContainer.appendChild(gameBoard);
+
+  // Create 100 board squares with coordinate data
+  const rows = 10;
+  const columns = 10;
+  for (let i = 0; i < rows; i += 1) {
+    for (let j = 0; j < columns; j += 1) {
+      const boardSquare = document.createElement('div');
+      boardSquare.classList.add('board_square');
+      boardSquare.dataset.player = '1';
+      boardSquare.dataset.coordinate = `[${i}][${j}]`;
+      gameBoard.appendChild(boardSquare);
+    }
+  }
+}
+
 function displayShips(gameBoard) {
   const coordinate = document.querySelectorAll('.board_square');
 
@@ -20,7 +48,6 @@ function displayShips(gameBoard) {
         || gameBoard[i][j] === 'cruiser'
         || gameBoard[i][j] === 'submarine'
         || gameBoard[i][j] === 'destroyer') {
-        console.log(gameBoard[i][j]);
         for (const boardSquare of coordinate) {
           if (boardSquare.dataset.player === '1'
             && boardSquare.dataset.coordinate === `[${i}][${j}]`) {
@@ -33,5 +60,6 @@ function displayShips(gameBoard) {
 }
 
 export {
+  displayBoard,
   displayShips,
 };

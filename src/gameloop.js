@@ -6,10 +6,11 @@ import {
   Ship, Gameboard, Player, Computer,
 } from './logic';
 import {
-  displayShips,
+  displayBoard, displayShips,
 } from './display';
 
 function newTestGame() {
+  displayBoard();
   // create player 1 and player 1 gameboard with ships
   const player1 = new Player('john');
   const player1GameBoard = new Gameboard();
@@ -27,8 +28,6 @@ function newTestGame() {
   player2GameBoard.placeShip(new Ship('submarine'), 7, 2, 'vertical');
   player2GameBoard.placeShip(new Ship('destroyer'), 9, 6, 'horizontal');
 
-  console.log(player1GameBoard.board);
-  console.log(player2GameBoard.board);
   displayShips(player1GameBoard.board);
   displayShips(player2GameBoard.board);
 }
