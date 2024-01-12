@@ -38,7 +38,7 @@ function displayBoard(player) {
   }
 }
 
-function displayShips(gameBoard) {
+function displayShips(gameBoard, player) {
   const coordinate = document.querySelectorAll('.board_square');
 
   for (let i = 0; i < gameBoard.length; i += 1) {
@@ -49,7 +49,7 @@ function displayShips(gameBoard) {
         || gameBoard[i][j] === 'submarine'
         || gameBoard[i][j] === 'destroyer') {
         for (const boardSquare of coordinate) {
-          if (boardSquare.dataset.player === '1'
+          if (boardSquare.dataset.player === `${player}`
             && boardSquare.dataset.coordinate === `[${i}][${j}]`) {
             boardSquare.style.backgroundColor = '#684aab';
           }
