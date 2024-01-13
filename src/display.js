@@ -32,7 +32,8 @@ function displayBoard(player) {
       const boardSquare = document.createElement('div');
       boardSquare.classList.add('board_square');
       boardSquare.dataset.player = `${player}`;
-      boardSquare.dataset.coordinate = `[${i}][${j}]`;
+      boardSquare.dataset.row = `${i}`;
+      boardSquare.dataset.column = `${j}`;
       gameBoard.appendChild(boardSquare);
     }
   }
@@ -50,7 +51,8 @@ function displayShips(gameBoard, player) {
         || gameBoard[i][j] === 'destroyer') {
         for (const boardSquare of coordinate) {
           if (boardSquare.dataset.player === `${player}`
-            && boardSquare.dataset.coordinate === `[${i}][${j}]`) {
+            && boardSquare.dataset.row === `${i}`
+            && boardSquare.dataset.column === `${j}`) {
             boardSquare.style.backgroundColor = '#684aab';
           }
         }
@@ -59,7 +61,23 @@ function displayShips(gameBoard, player) {
   }
 }
 
+function receiveAttackListeners(player, enemy, gameboard) {
+  const coordinate = document.querySelectorAll('.board_square');
+
+  for (const boardSquare of coordinate) {
+    if (boardSquare.dataset.player === `${player}`) {
+      boardSquare.addEventListener('click', (event) => {
+        console.log(event.target.dataset.row);
+        console.log(event.target.dataset.column);
+        enemy.sendAttack(gameboard, event.target.dataset.row, event.target.dataset.column);
+        console.log(gameboard);
+      });
+    }
+  }
+}
+
 export {
   displayBoard,
   displayShips,
+  receiveAttackListeners,
 };

@@ -77,7 +77,8 @@ h1 {
     align-items: center;
 }
 
-.gameboard_container > .gameboard_title {
+.gameboard_title {
+    text-align: center;
     padding-bottom: 2rem;
 }
 
