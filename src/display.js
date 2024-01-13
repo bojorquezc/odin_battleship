@@ -93,6 +93,7 @@ function disableBoard(activePlayer) {
 function receiveAttackListeners(player, enemy, gameboard) {
   const coordinate = document.querySelectorAll('.board_square');
 
+  // Gameboard listens for attacks from enemy
   for (const boardSquare of coordinate) {
     if (boardSquare.dataset.player === `${player}`) {
       boardSquare.addEventListener('click', (event) => {

@@ -130,7 +130,8 @@ class Gameboard {
     }
   }
 
-  endGame(playerShipArray) {
+  endGame() {
+    const playerShipArray = this.playerShips;
     for (const ship of playerShipArray) {
       if (ship.sunk === false) {
         return false;

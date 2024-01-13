@@ -83,7 +83,7 @@ test('the selected coordinates add a missed marker in case no ship is found', ()
     const gameBoardTest = new Gameboard;
     gameBoardTest.placeShip(new Ship('carrier'), 0, 0, 'horizontal');
     gameBoardTest.receiveAttack(0,4);
-    expect(gameBoardTest.board[0][4]).toEqual('carrier');
+    expect(gameBoardTest.board[0][4]).toEqual('hit');
     gameBoardTest.receiveAttack(0,5);
     expect(gameBoardTest.board[0][5]).toEqual('missed');
 });

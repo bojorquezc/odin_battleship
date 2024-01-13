@@ -12,10 +12,14 @@ import {
 
 function mainGameLoop(player1, player1GameBoard, player2, player2GameBoard, turn) {
   let currentTurn = turn;
-  if (currentTurn === 'firstPlayer') {
-    // Disable own board to focus on enemy board
-    disableBoard(currentTurn);
-    // Pass turn to other player once their move is made
+  console.log(currentTurn);
+  while (player1GameBoard.endGame() !== false
+  || player2GameBoard.endGame() !== false) {
+    if (currentTurn === 'firstPlayer') {
+      // Disable own board to focus on enemy board
+      disableBoard(currentTurn);
+      // Pass turn to other player once their move is made
+    }
   }
 }
 
