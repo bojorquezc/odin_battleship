@@ -22,6 +22,7 @@ function displayBoard(player) {
   // Create main container for gameboard
   const gameBoard = document.createElement('div');
   gameBoard.classList.add('gameboard');
+  gameBoard.classList.add(`gameboard_${player}`);
   gameBoardContainer.appendChild(gameBoard);
 
   // Create 100 board squares with coordinate data
@@ -41,7 +42,7 @@ function displayBoard(player) {
 
 function displayShips(gameBoard, player) {
   const coordinate = document.querySelectorAll('.board_square');
-
+  // Display ships on gameboard
   for (let i = 0; i < gameBoard.length; i += 1) {
     for (let j = 0; j < gameBoard[i].length; j += 1) {
       if (gameBoard[i][j] === 'carrier'
@@ -58,6 +59,34 @@ function displayShips(gameBoard, player) {
         }
       }
     }
+  }
+}
+
+function displayHits(gameBoard, player) {
+  const coordinate = document.querySelectorAll('.board_square');
+  // Display hits on gameboard
+  for (let i = 0; i < gameBoard.length; i += 1) {
+    for (let j = 0; j < gameBoard[i].length; j += 1) {
+      if (gameBoard[i][j] === 'hit') {
+        for (const boardSquare of coordinate) {
+          if (boardSquare.dataset.player === `${player}`
+            && boardSquare.dataset.row === `${i}`
+            && boardSquare.dataset.column === `${j}`) {
+            boardSquare.style.backgroundColor = '#a15353';
+          }
+        }
+      }
+    }
+  }
+}
+
+function disableBoard(activePlayer) {
+  const gameBoard1 = document.querySelector('.gameboard_container_p1');
+  const gameBoard2 = document.querySelector('.gameboard_container_p2');
+  if (activePlayer === 'firstPlayer') {
+    gameBoard1.classList.toggle('disabled');
+  } else {
+    gameBoard2.classList.toggle('disabled');
   }
 }
 
@@ -79,5 +108,7 @@ function receiveAttackListeners(player, enemy, gameboard) {
 export {
   displayBoard,
   displayShips,
+  displayHits,
+  disableBoard,
   receiveAttackListeners,
 };

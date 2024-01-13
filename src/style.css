@@ -38,6 +38,11 @@ h1 {
     font-weight: 700;
 }
 
+.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
 .header {
     display: flex;
     flex-direction: column;

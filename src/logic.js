@@ -122,6 +122,7 @@ class Gameboard {
       for (const ship of this.playerShips) {
         if (ship.type === damagedShip) {
           ship.hit();
+          this.board[row][column] = 'hit';
         }
       }
     } else {
